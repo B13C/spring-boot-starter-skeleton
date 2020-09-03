@@ -1,15 +1,17 @@
 package com.geoxus.app;
 
+import com.brt.EnableGeoxus;
+import com.brt.service.HelloService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import redis.clients.jedis.Jedis;
 
 @SpringBootApplication
+@EnableGeoxus
 public class AppApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(AppApplication.class, args);
-        Jedis jedis = context.getBean(Jedis.class);
-        System.out.println(jedis.get("name"));
+        HelloService bean = context.getBean(HelloService.class);
+        System.out.println(bean.sayHello("欢迎您"));
     }
 }
